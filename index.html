@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0f2b3f">
+<meta name="description" content="Curso de indicadores educativos, actividades interactivas y evaluación final. Demostración EdTech SCORM 1.2.">
+<title>De los datos a las decisiones | Learning Lab</title>
+<style>
+:root{--navy:#0d283b;--ink:#17394d;--teal:#148f84;--muted:#597386;--bg:#f1f6fa;--line:#dbe7ee}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 "Segoe UI",Arial,sans-serif}
+button,input{font:inherit}button{cursor:pointer}.app{display:grid;grid-template-columns:295px minmax(0,1fr);min-height:100vh}
+aside{position:sticky;top:0;height:100vh;overflow:auto;color:#fff;background:linear-gradient(155deg,#092438,#165467);padding:29px 21px}
+.brand{font-size:13px;color:#8de5d4;letter-spacing:2px;font-weight:850}.pill{margin-top:45px;color:#83d6ca;font-size:11px;letter-spacing:1.5px;font-weight:bold}
+aside h1{font-size:30px;line-height:1.1;margin:15px 0 12px}aside p{font-size:13px;color:#b9d0d9}
+.progress-info{display:flex;justify-content:space-between;align-items:center;font-weight:750;font-size:13px;margin-top:30px}
+.track{height:9px;border-radius:20px;overflow:hidden;background:#456878;margin:10px 0 28px}.fill{width:0;height:100%;background:#76e3cf;transition:width .2s}
+nav{display:grid;gap:7px}nav button{text-align:left;color:#dbecf1;border:1px solid transparent;background:transparent;border-radius:10px;padding:13px;font-size:13px;font-weight:700}
+nav button:hover{background:#225367}nav button.active{background:#28766d;border-color:#64a89b;color:#fff}nav .num{display:inline-flex;justify-content:center;align-items:center;border-radius:50%;background:#31576c;width:24px;height:24px;margin-right:9px}
+nav button.active .num{background:#a0f5dd;color:#124b48}.conn{font-size:12px;color:#b0dacf;border-top:1px solid #466b7b;margin-top:26px;padding-top:18px}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:20px 30px;background:#fff;font-size:12px;font-weight:750;color:#6c8192}
+.status{background:#dff5eb;color:#0e786b;padding:7px 12px;border-radius:30px}
+.wrap{max-width:1120px;margin:auto;padding:38px 33px}.tiny{color:var(--teal);letter-spacing:1.5px;font-size:11px;font-weight:850;text-transform:uppercase}
+h2{font-size:32px;line-height:1.2;margin:13px 0}h3{font-size:19px;margin:0 0 11px}.lead{font-size:16px;color:var(--muted);margin-bottom:27px}
+.hero{border-radius:23px;padding:40px;background:linear-gradient(115deg,#0c3146,#177a79);color:white;box-shadow:0 10px 28px #19506418}.hero h2{font-size:clamp(30px,5vw,49px);max-width:790px}.hero p{max-width:720px;color:#d8f2ec}.hero .tiny{color:#adf5e9}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:23px 0}.grid.two{grid-template-columns:repeat(2,1fr)}
+.card,.panel,.exercise{background:white;border-radius:16px;padding:24px;border:1px solid var(--line);box-shadow:0 5px 20px #12314c08}.metric{font-size:36px;font-weight:850;color:#0e2e46}.card p,.card small{color:var(--muted)}.panel{margin:21px 0}
+.btn{background:var(--teal);color:white;border:0;padding:12px 20px;font-weight:750;border-radius:11px}.btn:hover{filter:brightness(.94)}.btn.outline{background:white;color:#23546b;border:1px solid #c9dbe6}.btn:focus-visible,nav button:focus-visible{outline:3px solid #7dd3e6;outline-offset:2px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin:27px 0}.formula{background:#e6f8f1;color:#0a816f;border-radius:10px;padding:21px;text-align:center;font-size:29px;font-weight:850}.formula small{font-size:12px;display:block;color:#46776c}
+.note{background:#e6f3f9;border-left:4px solid #2d89b2;border-radius:0 12px 12px 0;padding:15px 18px;margin:19px 0}
+.choice{display:flex;align-items:flex-start;gap:10px;border:1px solid #dbe6ed;border-radius:11px;padding:12px;margin:9px 0;cursor:pointer}.choice:has(input:checked){border-color:#42b9a0;background:#eaf9f4}.choice input{margin-top:5px;accent-color:var(--teal)}
+.exercise{margin:22px 0}.feedback{background:#e6f7e9;color:#167047;padding:14px;border-radius:11px;margin-top:16px}.feedback.bad{background:#fff2e8;color:#a45518}
+.quiz{border-radius:15px;border:1px solid #dae8ed;background:white;padding:18px 20px;margin:14px 0}.quiz legend{font-weight:800;padding:0 5px}.result{padding:28px;text-align:center;border-radius:16px;background:#e9f7f1;margin:23px 0}.result.fail{background:#fff3e4}.result strong{font-size:52px;color:#0e8074}
+.review{list-style:none;padding:0}.review li{padding:15px;margin:10px 0;border:1px solid var(--line);border-radius:10px;background:#fff}
+.bar{height:19px;background:#e2ecf0;border-radius:20px;overflow:hidden}.bar span{display:block;height:100%;background:var(--teal);border-radius:20px}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:11px;text-align:left;border-bottom:1px solid #e4edf2}th{background:#f4f8fb}
+.footer{border-top:1px solid var(--line);padding-top:17px;margin-top:53px;font-size:12px;color:#70899a}
+@media(max-width:900px){.app{grid-template-columns:1fr}aside{position:relative;height:auto}.pill{margin-top:18px}nav{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.wrap{padding:22px 16px}.top{padding:17px}.grid,.grid.two,nav{grid-template-columns:1fr}.hero{padding:26px}.card,.panel,.exercise{padding:19px}}
+@media print{aside,.top,.actions,.btn{display:none!important}.app{display:block}.hero{background:white;color:black}}
+</style></head><body>
+<div class="app">
+<aside><div class="brand">▥ LEARNING LAB</div><div class="pill">MICROCURSO · 20 MINUTOS</div><h1>De los datos a las decisiones</h1><p>Indicadores educativos y decisiones basadas en evidencia.</p>
+<div class="progress-info"><span>Tu avance</span><span id="progress-text">0 %</span></div><div class="track" id="progress" role="progressbar" aria-label="Progreso" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progress-fill" class="fill"></div></div>
+<nav id="nav" aria-label="Lecciones"></nav><div class="conn" id="connection">Modo demostración · progreso local</div>
+</aside>
+<main><header class="top"><span>PORTAFOLIO EDTECH / <span id="where">Inicio</span></span><span id="status" class="status">En progreso</span></header>
+<div class="wrap"><section id="content" aria-live="polite" tabindex="-1"></section><div class="footer">Merbyn Gómez Rondón · Proyecto demostrativo con datos ficticios · SCORM 1.2</div></div></main>
+</div>
+<script id="course-app">
+(function(){
+"use strict";
+var ids=["inicio","indicadores","calculos","decisiones","evaluacion"];
+var labels=["Bienvenida","1. Elegir indicadores","2. Calcular tasas","3. Tomar decisiones","Evaluación final"];
+var questions=[
+ ["120 matrículas y 90 finalizaciones. ¿Cuál es la tasa de finalización?",["90 %","75 %","30 %"],1,"90 ÷ 120 × 100 = 75 %. La base son todas las matrículas."],
+ ["De 90 personas que finalizaron, 72 aprobaron. ¿Cuál es el porcentaje de aprobación entre finalizadores?",["60 %","75 %","80 %"],2,"72 ÷ 90 × 100 = 80 %."],
+ ["¿Cómo comunicarías responsablemente un indicador?",["Con numerador, denominador y periodo","Solo con un porcentaje","Comparando grupos sin contexto"],0,"Es importante explicar la base y el periodo."],
+ ["Si cae la actividad del tercer módulo, ¿qué investigarías primero?",["Eliminar el módulo","Concluir que hay desmotivación","Segmentos y posibles causas"],2,"Un patrón no demuestra causalidad."],
+ ["¿Cuál es la diferencia entre finalización y aprobación entre finalizadores?",["Son iguales","Usan distintos denominadores","Las dos usan visitas web"],1,"Finalización usa inscritos; la segunda, finalizadores."]
+];
+var key="merbyn-scorm-indicators-v1",api=null,init=false,done=false,started=Date.now();
+function locate(w){for(var k=0;k<12&&w;k++){try{if(w.API&&typeof w.API.LMSInitialize==="function")return w.API;if(w===w.parent)break;w=w.parent;}catch(e){break;}}return null;}
+function call(fn,args){if(!init||done)return null;try{return String(api[fn].apply(api,args||[]));}catch(e){return null;}}
+api=locate(window);if(!api){try{api=locate(window.opener);}catch(e){}}
+try{init=!!api&&String(api.LMSInitialize(""))==="true";}catch(e){init=false;}
+if(init){var old=call("LMSGetValue",["cmi.core.lesson_status"]);if(!old||old==="not attempted")call("LMSSetValue",["cmi.core.lesson_status","incomplete"]);call("LMSCommit",[""]);}
+function empty(){return{page:"inicio",seen:["inicio"],practice:{},answers:{},submitted:false,score:null,passed:false,attempts:0};}
+function resume(){var item=null;try{if(init)item=JSON.parse(call("LMSGetValue",["cmi.suspend_data"])||"null");}catch(e){}
+if(!item){try{item=JSON.parse(localStorage.getItem(key)||"null");}catch(e){}}
+var s=empty();if(item&&typeof item==="object"){s.page=ids.includes(item.page)?item.page:"inicio";s.seen=Array.isArray(item.seen)?item.seen.filter(function(v){return ids.includes(v);}):["inicio"];s.practice=item.practice||{};s.answers=item.answers||{};s.submitted=!!item.submitted;s.score=typeof item.score==="number"?item.score:null;s.passed=!!item.passed;s.attempts=Number(item.attempts)||0;}return s;}
+var state=resume(),root=document.getElementById("content");
+function save(){var raw=JSON.stringify(state);try{localStorage.setItem(key,raw);}catch(e){}if(!init||done)return;
+if(raw.length<=4096)call("LMSSetValue",["cmi.suspend_data",raw]);
+call("LMSSetValue",["cmi.core.lesson_location",state.page]);
+if(state.score!==null){call("LMSSetValue",["cmi.core.score.min","0"]);call("LMSSetValue",["cmi.core.score.max","100"]);call("LMSSetValue",["cmi.core.score.raw",String(state.score)]);}
+var prev=call("LMSGetValue",["cmi.core.lesson_status"]);
+call("LMSSetValue",["cmi.core.lesson_status",state.passed||prev==="passed"?"passed":state.submitted?"failed":"incomplete"]);
+call("LMSCommit",[""]);
+}
+function close(){if(!init||done)return;save();var seconds=Math.floor((Date.now()-started)/1000);var hours=String(Math.floor(seconds/3600)).padStart(4,"0"),minutes=String(Math.floor(seconds%3600/60)).padStart(2,"0"),sec=String(seconds%60).padStart(2,"0");
+call("LMSSetValue",["cmi.core.session_time",hours+":"+minutes+":"+sec]);call("LMSSetValue",["cmi.core.exit",state.passed?"":"suspend"]);call("LMSCommit",[""]);call("LMSFinish",[""]);done=true;}
+function percent(){return state.passed?100:Math.min(85,Math.round(state.seen.length/5*85));}
+function header(){document.getElementById("nav").innerHTML=ids.map(function(v,i){return '<button type="button" data-go="'+v+'" class="'+(state.page===v?"active":"")+'" '+(state.page===v?'aria-current="step"':'')+'><span class="num">'+(i===0?"⌂":i)+'</span>'+labels[i]+'</button>';}).join("");
+var p=percent();document.getElementById("progress-text").textContent=p+" %";document.getElementById("progress-fill").style.width=p+"%";document.getElementById("progress").setAttribute("aria-valuenow",String(p));document.getElementById("where").textContent=labels[ids.indexOf(state.page)];
+document.getElementById("status").textContent=state.passed?"Aprobado":state.submitted?"Requiere refuerzo":"En progreso";document.getElementById("connection").textContent=init?"Conectado con LMS · SCORM 1.2":"Modo demostración · progreso local";}
+function actions(a,b){return '<div class="actions"><button type="button" class="btn outline" data-go="'+a+'">← Anterior</button>'+(b?'<button type="button" class="btn" data-go="'+b+'">Continuar →</button>':"")+'</div>';}
+function heading(k,t,d){return '<div class="tiny">'+k+'</div><h2>'+t+'</h2><p class="lead">'+d+'</p>';}
+function activity(id,question,choices,right,why,clue){var ans=state.practice[id];return '<div class="exercise"><div class="tiny">PRÁCTICA CON RETROALIMENTACIÓN</div><h3>'+question+'</h3>'+choices.map(function(c,i){return '<label class="choice"><input type="radio" name="practice-'+id+'" value="'+i+'" '+(ans===i?"checked":"")+'><span>'+c+'</span></label>';}).join("")+'<button class="btn outline" type="button" data-check="'+id+'">Comprobar</button>'+(ans===undefined?"":'<div class="feedback '+(ans===right?"":"bad")+'">'+(ans===right?"✓ "+why:"Revisa: "+clue)+'</div>')+'</div>';}
+function page(){
+if(state.page==="inicio")return '<div class="hero"><div class="tiny">CURSO ONLINE · EDTECH</div><h2>Cuando los datos cuentan una historia, las decisiones mejoran.</h2><p>Aprende a calcular e interpretar indicadores de aprendizaje con casos ficticios y actividades interactivas.</p><button class="btn" type="button" data-go="indicadores">Comenzar el curso →</button></div><div class="grid"><div class="card"><div class="tiny">Duración</div><div class="metric">20 min</div></div><div class="card"><div class="tiny">Lecciones</div><div class="metric">03</div></div><div class="card"><div class="tiny">Aprobación</div><div class="metric">80 %</div></div></div><div class="panel"><h3>Objetivos de aprendizaje</h3><p>Distinguir tasas, calcularlas con numeradores y denominadores adecuados y proponer acciones de mejora a partir de señales del LMS.</p><div class="note">Todos los datos son sintéticos. Este es un curso de demostración para portafolio.</div></div>';
+if(state.page==="indicadores")return heading("LECCIÓN 01","Elegir los indicadores","Cada indicador responde una pregunta distinta. Nunca interpretes un porcentaje sin conocer su denominador.")+'<div class="grid"><div class="card"><div class="tiny">Finalización</div><div class="metric">75 %</div><small>Finalizadores / matriculados</small></div><div class="card"><div class="tiny">Aprobación</div><div class="metric">80 %</div><small>Aprobados / finalizadores</small></div><div class="card"><div class="tiny">Actividad</div><div class="metric">70 %</div><small>Activos / matriculados</small></div></div><div class="panel"><h3>Tres preguntas, tres indicadores</h3><table><tr><th>Indicador</th><th>Numerador</th><th>Denominador</th></tr><tr><td>Finalización</td><td>Finalizados</td><td>Matriculados</td></tr><tr><td>Aprobación entre finalizadores</td><td>Finalizados aprobados</td><td>Finalizados</td></tr><tr><td>Actividad semanal</td><td>Inscritos activos</td><td>Matriculados</td></tr></table></div>'+activity("p1","¿Qué usarías para medir cuántos inscritos terminan el curso?",["Aprobación","Finalización","Tiempo de conexión"],1,"La finalización utiliza todas las matrículas.","Compara el número de finalizadores con inscritos.")+actions("inicio","calculos");
+if(state.page==="calculos")return heading("LECCIÓN 02","Calcular tasas educativas","Caso ficticio: 120 matrículas, 90 finalizaciones y 72 finalizadores aprobados.")+'<div class="grid"><div class="card"><div class="tiny">Matriculados</div><div class="metric">120</div></div><div class="card"><div class="tiny">Finalizaron</div><div class="metric">90</div></div><div class="card"><div class="tiny">Aprobaron</div><div class="metric">72</div></div></div><div class="grid two"><div class="card"><h3>Finalización</h3><div class="formula">90 ÷ 120 = 75 %<small>Finalizadores / inscritos</small></div></div><div class="card"><h3>Aprobación entre finalizadores</h3><div class="formula">72 ÷ 90 = 80 %<small>Aprobados / finalizadores</small></div></div></div><div class="note">72 ÷ 120 = 60 % expresa aprobados entre todas las matrículas: es otro indicador.</div>'+activity("p2","De 80 matriculados, 60 finalizaron. ¿Cuál es la tasa?",["60 %","75 %","80 %"],1,"Correcto: 60 ÷ 80 = 75 %.","Divide quienes finalizan entre quienes se matricularon.")+actions("indicadores","decisiones");
+if(state.page==="decisiones")return heading("LECCIÓN 03","Convertir señales en decisiones","Un indicador muestra patrones. La investigación permite comprender qué ocurre.")+'<div class="grid two"><div class="card"><div class="tiny">CURSO A</div><h3>Finalización 75 %</h3><div class="bar"><span style="width:75%"></span></div><p>90 de 120 personas finalizan.</p></div><div class="card"><div class="tiny">CURSO B</div><h3>Finalización 60 %</h3><div class="bar"><span style="width:60%;background:#548ecb"></span></div><p>60 de 100 personas finalizan.</p></div></div><div class="panel"><h3>¿Podemos concluir que A está mejor diseñado?</h3><p>No, porque las cohortes pueden diferir en edad, requisitos, duración, dificultad o condiciones de estudio.</p><div class="note"><strong>Ruta:</strong> detectar → segmentar → investigar → intervenir → volver a medir.</div></div>'+activity("p3","Cae la participación en el tercer módulo. ¿Qué haces primero?",["Segmentar y explorar causas","Eliminarlo inmediatamente","Culpar a los participantes"],0,"Investigar antes de intervenir evita decisiones precipitadas.","Una correlación no revela la causa.")+actions("calculos","evaluacion");
+if(state.page==="evaluacion"){var form=questions.map(function(q,i){return '<fieldset class="quiz"><legend>'+(i+1)+'. '+q[0]+'</legend>'+q[1].map(function(o,j){return '<label class="choice"><input type="radio" name="q'+i+'" data-answer="'+i+'" value="'+j+'" '+(String(state.answers[i])===String(j)?"checked":"")+' '+(state.submitted?"disabled":"")+'><span>'+o+'</span></label>';}).join("")+'</fieldset>';}).join("");
+var result=state.submitted?'<div class="result '+(state.passed?"":"fail")+'"><div class="tiny">RESULTADO FINAL</div><strong>'+state.score+' %</strong><h3>'+(state.passed?"¡Competencia demostrada!":"Puedes repasar y volver a intentar")+'</h3><p>'+(state.passed?"Aprobaste. El LMS puede recibir la nota y el estado SCORM.":"Se necesitan 4 respuestas correctas de 5.")+'</p>'+(state.passed?'<button class="btn outline" data-print="1">Imprimir constancia demostrativa</button>':'<button class="btn" data-retry="1">Reintentar</button>')+'</div><h3>Retroalimentación</h3><ul class="review">'+questions.map(function(q,i){return '<li><strong>'+(Number(state.answers[i])===q[2]?"✓ Correcta: ":"✕ Por reforzar: ")+q[0]+'</strong><p>'+q[3]+'</p></li>';}).join("")+'</ul>':"";
+return heading("EVALUACIÓN FINAL","Demuestra lo aprendido","Cinco preguntas de alternativa única. Necesitas cuatro correctas para aprobar (80 %).")+'<div class="note">Puedes repasar cada lección antes de responder.</div>'+form+(state.submitted?"":'<button type="button" class="btn" data-submit="1">Evaluar mis respuestas →</button>')+result+actions("decisiones",null);}
+return "";}
+function render(focus){header();root.innerHTML=page();if(focus){root.focus({preventScroll:true});window.scrollTo(0,0);}}
+function go(id){if(!ids.includes(id))return;state.page=id;if(!state.seen.includes(id))state.seen.push(id);save();render(true);}
+document.addEventListener("click",function(e){var btn=e.target.closest("button");if(!btn)return;
+if(btn.dataset.go){go(btn.dataset.go);return;}
+if(btn.dataset.check){var id=btn.dataset.check;var answer=document.querySelector('input[name="practice-'+id+'"]:checked');if(!answer){alert("Selecciona una opción.");return;}state.practice[id]=Number(answer.value);save();render(false);return;}
+if(btn.dataset.submit){for(var i=0;i<questions.length;i++)if(state.answers[i]===undefined){alert("Responde las cinco preguntas.");return;}var count=0;questions.forEach(function(q,i){if(Number(state.answers[i])===q[2])count++;});state.score=count*20;state.submitted=true;state.passed=state.passed||state.score>=80;state.attempts++;save();render(false);return;}
+if(btn.dataset.retry){if(state.passed)return;state.answers={};state.submitted=false;state.score=null;save();render(false);return;}
+if(btn.dataset.print){window.print();return;}
+});
+document.addEventListener("change",function(e){var i=e.target.dataset.answer;if(i!==undefined&&!state.submitted){state.answers[i]=Number(e.target.value);save();}});
+window.addEventListener("pagehide",close);window.addEventListener("beforeunload",close);save();render(false);
+})();
+</script></body></html>
