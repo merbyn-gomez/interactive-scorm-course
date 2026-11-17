@@ -18,6 +18,8 @@ jobs:
           node-version: '20'
       - name: Validate course
         run: python tests/validate.py
+      - name: Simulated LMS end-to-end test
+        run: node tests/smoke.js
       - name: Build importable SCORM ZIP
         run: |
           mkdir -p dist
