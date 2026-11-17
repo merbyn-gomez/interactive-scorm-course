@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest identifier="MERBYN_SCORM12_INDICADORES" version="1.0"
+ xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+ xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <metadata><schema>ADL SCORM</schema><schemaversion>1.2</schemaversion></metadata>
+ <organizations default="COURSE_ORG">
+  <organization identifier="COURSE_ORG">
+   <title>De los datos a las decisiones: indicadores de aprendizaje</title>
+   <item identifier="ITEM_LEARNING" identifierref="RESOURCE_LEARNING" isvisible="true">
+    <title>Minicurso interactivo: indicadores de aprendizaje</title>
+    <adlcp:masteryscore>80</adlcp:masteryscore>
+   </item>
+  </organization>
+ </organizations>
+ <resources>
+  <resource identifier="RESOURCE_LEARNING" type="webcontent" adlcp:scormtype="sco" href="index.html">
+   <file href="index.html"/>
+  </resource>
+ </resources>
+</manifest>
