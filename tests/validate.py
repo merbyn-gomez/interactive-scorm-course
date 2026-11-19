@@ -11,6 +11,8 @@ root = Path(__file__).resolve().parents[1]
 html = (root / "index.html").read_text(encoding="utf-8")
 manifest = (root / "imsmanifest.xml").read_bytes()
 assert '<html lang="es">' in html
+assert 'src="assets/lms-analytics-welcome.avif"' in html
+assert (root / "assets" / "lms-analytics-welcome.avif").is_file()
 assert 'id="course-app"' in html
 for field in ("cmi.suspend_data", "cmi.core.score.raw", "cmi.core.lesson_status",
               "cmi.core.session_time", "LMSInitialize", "LMSFinish"):
@@ -25,14 +27,16 @@ with tempfile.TemporaryDirectory() as folder:
     with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
         archive.write(root / "index.html", "index.html")
         archive.write(root / "imsmanifest.xml", "imsmanifest.xml")
+        archive.write(root / "assets" / "lms-analytics-welcome.avif", "assets/lms-analytics-welcome.avif")
     with zipfile.ZipFile(zip_path) as archive:
         assert archive.testzip() is None
-        assert set(archive.namelist()) == {"index.html", "imsmanifest.xml"}
+        assert set(archive.namelist()) == {"index.html", "imsmanifest.xml", "assets/lms-analytics-welcome.avif"}
         document = ET.fromstring(archive.read("imsmanifest.xml"))
         ns = {"im": "http://www.imsproject.org/xsd/imscp_rootv1p1p2"}
         resource = document.find(".//im:resource", ns)
         assert resource is not None
         assert resource.attrib.get("href") == "index.html"
+        assert any(child.attrib.get("href") == "assets/lms-analytics-welcome.avif" for child in resource)
         score = document.find(".//{http://www.adlnet.org/xsd/adlcp_rootv1p2}masteryscore")
         assert score is not None and score.text == "80"
 print("SCORM structure and JavaScript syntax OK; LMS integration still needs testing.")

@@ -6,6 +6,12 @@
 
 Proyecto de portafolio de Merbyn Gómez Rondón: un minicurso en español con **tres lecciones**, tres comprobaciones de aprendizaje, ejemplos numéricos y una **evaluación final de cinco preguntas**. Está diseñado como demostración de desarrollo de contenidos digitales para educación corporativa.
 
+### Bienvenida visual
+
+La portada del curso combina una introducción y una ilustración de una profesional que analiza indicadores en un LMS. La imagen se guarda en `assets/lms-analytics-welcome.avif` y **se incluye en el paquete SCORM** para que no dependa de una conexión externa. Se utiliza formato AVIF optimizado; requiere un navegador moderno compatible con AVIF.
+
+![Ilustración del módulo de bienvenida: analítica LMS](assets/lms-analytics-welcome.avif)
+
 ### Probar el curso
 - **Vista en navegador:** abre `index.html` directamente en tu navegador o usa GitHub Pages cuando esté habilitado.
 - **Posible URL de GitHub Pages:** https://merbyn-gomez.github.io/interactive-scorm-course/ (**requiere activar Pages; no se garantiza que esté publicada todavía**).
@@ -35,12 +41,13 @@ Abre [Actions](https://github.com/merbyn-gomez/interactive-scorm-course/actions)
 También puedes generar el ZIP en tu equipo desde la raíz del repositorio:
 
 ```powershell
-Compress-Archive -Path index.html, imsmanifest.xml -DestinationPath curso-indicadores-SCORM12.zip -Force
+Compress-Archive -Path index.html, imsmanifest.xml, assets -DestinationPath curso-indicadores-SCORM12.zip -Force
 ```
 
 ### Estructura
 ```text
 index.html                  # Curso y runtime SCORM en una sola página
+assets/lms-analytics-welcome.avif   # Ilustración de bienvenida
 imsmanifest.xml             # Manifiesto SCORM 1.2
 tests/validate.py           # Validación de sintaxis y paquete
 .github/workflows/          # Construcción automática del ZIP

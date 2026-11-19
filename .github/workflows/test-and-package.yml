@@ -23,7 +23,7 @@ jobs:
       - name: Build importable SCORM ZIP
         run: |
           mkdir -p dist
-          zip -j -9 dist/curso-indicadores-SCORM12.zip index.html imsmanifest.xml
+          zip -9 dist/curso-indicadores-SCORM12.zip index.html imsmanifest.xml assets/lms-analytics-welcome.avif
           unzip -l dist/curso-indicadores-SCORM12.zip
       - uses: actions/upload-artifact@v4
         with:
